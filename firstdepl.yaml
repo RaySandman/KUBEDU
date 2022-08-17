@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: example
+  namespace: kube-test-ns
+spec:
+  selector:
+    matchLables:
+      app: hello-kuber
+  replicas: 2
+  template:
+    metadata:
+      labeles:
+        app: hello-kuber
+    spec:
+      containers:
+        name: hello-kuber
+        image: nginx
+          containerPort: 8080
