@@ -6,7 +6,7 @@ metadata:
   labels: 
     app: nginx
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -16,7 +16,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: hello-kuber
+      - name: nginx-kuber
         image: nginx:1.14.2
         ports:
         - containerPort: 80
