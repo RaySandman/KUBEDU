@@ -1,0 +1,78 @@
+
+#получение имени регистри в переменную в облаке яндекс
+REGISTRY_ID=$(yc container registry get --name kubedu-reg --format json | jq .id -r)
+
+Сборка образа в репозиторий
+
+sudo docker build . -f hello.dockerfile -t cr.yandex/crpb4d46mbbj0rf1mk7p/nginx:hello
+
+ID Registry: crpb4d46mbbj0rf1mk7p
+
+docker push cr.yandex/crpb4d46mbbj0rf1mk7p/nginx:hello
+
+
+docker login \
+  --username OAuth \
+  --password y0_AQAAAAAhGPhIAATuwQAAAADLk0LvCyxAzy9eSa6Of2M1UdjFWm0Q00w \
+  cr.yandex
+
+kubectl run --attach hello-nginx --image cr.yandex/crpb4d46mbbj0rf1mk7p/nginx:hello
+
+
+Закрытый
+
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDIShxZFQWLbxKT
+D3Ps8BV83L3IL2Be4fjxxhyBlt8gVI6eBvmVDMj1uYvZQ2mlxunwjAdcT6A9TBIf
+x9Lj/7uTjKS+hua0/gc595/ONKmoSg0ZNE9qiCm41xipQt5WxyrkK/KNr36tAc/R
+C03m+qui+NZFoUmUTXqNQv/q7hZD6ClJ9nwt6C0h4m2EoU6ttL5jlCdn71BJQcfJ
+VWSBLcmZNfe2WgU/1ykR2Cv3XUizoR6/lZRuYMvb8dgoAVlOufOqquIjJYxXST54
+M29NnIzuQNypognK8YTKLOaABaPuJu2vMe+Gsa++hzwULsm7U8DCkWjfRA3Dola1
+UxL0OuVXAgMBAAECggEABqNs9Wn6VsLBEmNY4fhzwFUWMOauoBjp44cYXYxthC2T
+IhFqpw1DbbjsyYiv2H/YW0fo3BVSAJ18sJqBgwy+/XNFSpSOXF8zW/YvH8L87SqK
+2TaMVIbSMpLvvneCmmpSSSYNlzzqSwC+rX819VOWOL7mUpPfBOi1ug/z0B5U94La
+2vIA/lurdHuIUeYRWZPEQSITviUT1mMXIs10flpQBtvQKRZrWizMJiQUkL0wCHJc
+hRyegtFIJeolWToEpwqynyiL/v/UKm4rPJcH8Zbw72otRCHsCF+WHZixwtCjckVq
+KIOnF6G3fWent8j+VVy/hjTUUa2NT//Zm+WaxyreYQKBgQDRoWu9k/DbzKNCBX6T
+ufTiYiPwpsXT/U7cKlWarPoZ0bgA5XzbrD5SeKJ9PxA8/oIE13FfI8bbmDjtDujX
+KZQwGdW5q0AW2Zg1vlzT7nSK6RUxU5dVX3O16jkE53IAeksJjmXNMsRXnDdmtjO9
+CfFEKpSzucIstICZuU4nYgrbOQKBgQD0l73UFLq+cvmYVclEUpv6ir8AUMIekKYi
+iUMjutl92hPiCin4bJ1VPvEUd/HcknrcLSk9IuGbk24xuNZS/KCghCXaSLPJPx3B
+DY59MzpZf9zqgaKcJKRMWeIBteJ66XMcx5NyWrjGiDQRjrUC6hBDo37LVY2aMwWy
+0waUz591DwKBgQDOQYbidodLnGMdeI58B0E85Nb71vtagyduVHD5ySwi70eeCi35
+bdW8C1nE5aGyga+n19qCg48LTRDlnf/Wg+B8G09AaZCbaujqKCzpkPs2GfNyHw8N
+Pud4m8YSXy657ZmbA3KCnWq10Mxp0OfDHd829LZux1yX49mMZtjQwxRvcQKBgCsB
+XyQh/O+tgYsyUjAMIla7/HdOu8LqBfv+jGqE2ObS6DoPNW/zkPpDFdpWeJUiwC1k
+V2Ljdi2Hj5F4gV6YApoWgh1OOSZCTbX67zm+Px0raSlmX7P6kVTHXQCV/VtFHrNJ
+t/gcUW6+1gDcSaFYjEGIRqvzv/ED1ZWqmvahRtUrAoGAASbLgqz8koRjY5ndjPE3
+4V3wIEeTqwsSxlT5dWjwTmrzNdWRSvtraGnDbnGDUcrdmTulH112C3JmulDHeffW
+D1XJX0l9oNWZrbJ6WeCa6KFJUSMyL/MrX79OQ9LpgaMg85UrTskTh7up8VKWVc0v
+97OwZx+bFD3L2rJezjvbjKI=
+-----END PRIVATE KEY-----
+
+
+Открытый
+
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyEocWRUFi28Skw9z7PAV
+fNy9yC9gXuH48cYcgZbfIFSOngb5lQzI9bmL2UNppcbp8IwHXE+gPUwSH8fS4/+7
+k4ykvobmtP4HOfefzjSpqEoNGTRPaogpuNcYqULeVscq5Cvyja9+rQHP0QtN5vqr
+ovjWRaFJlE16jUL/6u4WQ+gpSfZ8LegtIeJthKFOrbS+Y5QnZ+9QSUHHyVVkgS3J
+mTX3tloFP9cpEdgr911Is6Eev5WUbmDL2/HYKAFZTrnzqqriIyWMV0k+eDNvTZyM
+7kDcqaIJyvGEyizmgAWj7ibtrzHvhrGvvoc8FC7Ju1PAwpFo30QNw6JWtVMS9Drl
+VwIDAQAB
+-----END PUBLIC KEY-----
+
+OAuth y0_AQAAAAAhGPhIAATuwQAAAADLk0LvCyxAzy9eSa6Of2M1UdjFWm0Q00w
+
+export HELM_EXPERIMENTAL_OCI=1 && \
+cat sa-key.json | helm registry login cr.yandex --username 'json_key' --password-stdin && \
+helm pull oci://cr.yandex/yc/yc-alb-ingress-controller-chart \
+  --version=v0.1.0 \
+  --untar && \
+helm install \
+  --namespace kube-test-ns \
+  --set folderId=<идентификатор каталога> \
+  --set clusterId=rs-k8s-cluster \
+  --set-file saKeySecretKey=sa-key.json \
+  yc-alb-ingress-controller ./yc-alb-ingress-controller-chart/

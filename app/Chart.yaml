@@ -1,0 +1,6 @@
+apiVersion: v1
+name: app
+type: application
+
+description: Helm Chart for K8S
+version: 0.1.0

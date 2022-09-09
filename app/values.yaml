@@ -1,2 +1,2 @@
-name: nginx-svc
+name: nginx-svc-helm
 namespace: kube-test-ns
